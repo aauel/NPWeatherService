@@ -1,0 +1,36 @@
+﻿<!-- Displays tiles for each park in the database.
+     Each tile includes the park image one the left, and on
+     the right is the park name, state, and description. -->
+
+@model IEnumerable<NPWeatherService.Models.Park>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <h4>Select a park below for more details!</h4><br />
+</div>
+<div class="container-fluid">
+    @foreach (var item in Model) {
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-5">
+                    <a asp-action="Details" asp-route-id="@item.ParkCode">
+                        <img src="~/img/parks/@(item.ParkCode).jpg" class="card-img">
+                    </a>
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.ParkName</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@item.State</h6>
+                        <p class="card-text">
+                            @item.ParkDescription
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

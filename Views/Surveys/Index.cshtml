@@ -1,0 +1,34 @@
+﻿<!-- Displays each park where survey count > 0, in descending order
+     of survey count. Tying parks are listed in alphabetical order.
+-->
+
+@model IEnumerable<NPWeatherService.Models.Park>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Favorite Park Survey Results</h1>
+
+<p>
+    <a asp-action="Create">Create New Survey</a>
+</p>
+<div class="row">
+
+    @foreach (var item in Model) {
+        @if (item.Surveys.Count > 0) {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card">
+                    <a asp-action="Details" asp-route-id="@item.ParkCode">
+                        <img src="~/img/parks/@(item.ParkCode).jpg" class="card-img-top">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.ParkName - @item.State</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Survey Count: @item.Surveys.Count</h6>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+</div>

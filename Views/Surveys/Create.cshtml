@@ -1,0 +1,53 @@
+﻿@model NPWeatherService.Models.Survey
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>New Survey</h1>
+
+<h4>Fill out the details below to vote for your favorite park!</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ParkCode" class="control-label">Your Favorite Park</label>
+                <select asp-for="ParkCode" class="form-control" asp-items="ViewBag.ParkCode">
+                    <option selected="selected" value="">Select a Park</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label">Email Address</label>
+                <input asp-for="EmailAddress" class="form-control" placeholder="Enter your Email Address"/>
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label">State of Residence</label>
+                <select asp-for="State" class="form-control" asp-items="Html.GetEnumSelectList<State>()">
+                    <option selected="selected" value="">Select Your State</option>
+                </select>
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActivityLevel" class="control-label">Activity Level</label>
+                <select asp-for="ActivityLevel" class="form-control" asp-items="Html.GetEnumSelectList<ActivityLevel>()">
+                    <option selected="selected" value="">Select Your Activity Level</option>
+                </select>
+                <span asp-validation-for="ActivityLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
