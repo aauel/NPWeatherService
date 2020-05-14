@@ -19,7 +19,7 @@
         @if (item.Surveys.Count > 0) {
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card">
-                    <a asp-action="Details" asp-route-id="@item.ParkCode">
+                    <a asp-controller="Parks" asp-action="Details" asp-route-id="@item.ParkCode">
                         <img src="~/img/parks/@(item.ParkCode).jpg" class="card-img-top">
                     </a>
                     <div class="card-body">
